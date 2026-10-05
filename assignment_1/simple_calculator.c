@@ -1,10 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <math.h>
 double add(double a,double b){return a + b;}
 double subtract(double a, double b){return a - b;}
 double multiply(double a, double b){return a * b;}
 double divide(double a, double b){return a / b;}
+double module(double a, double b){return fmod(a,b);}
 
 void print_menu(void){
 
@@ -13,6 +15,7 @@ void print_menu(void){
     printf("- : subtraction\n");
     printf("/ : division\n");
     printf("* : multiplication\n");
+    printf("% : module\n");
     printf("q : Quit\n");
 
     }
@@ -48,13 +51,16 @@ while(running){
     }
 
     switch(op)
-    {   case'+' : result = add(a,b);
+    {
+        case '%' : result = module(a,b);
+                break;
+        case'+' : result = add(a,b);
                 break;
         case'-' : result = subtract(a,b);
                 break;
-        case'/' : result = divide(a,b);
-                break;
         case'*' : result = multiply(a,b);
+                break;
+        case'/' : result = divide(a,b);
                 if(b == 0)
                     {
                     printf("Error:Division by zero!\n");
